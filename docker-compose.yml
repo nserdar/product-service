@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  product-h2:
+    image: h2database/h2:latest  # H2 veritabanı için yeni görüntü
+    container_name: product-h2
+    environment:
+      H2_OPTIONS: '-tcpAllowOthers -tcpPort 9092 -ifNotExists'
+    ports:
+      - "9093:9092"  # H2'nin varsayılan TCP portu
+      - "8082:8082"  # H2 konsol erişimi için
+
+    volumes:
+      - h2-data:/data  # Veritabanı dosyaları için bir hacim oluşturun
+
+volumes:
+  h2-data:
